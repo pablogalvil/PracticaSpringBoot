@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Formulario de Usuario</h1>
-    <form th:action="@{/usuarios}" th:object="${usuario}" method="post">
+    <form th:action="@{/actualizar}" th:object="${usuario}" method="post">
         <input type="hidden" th:field="*{idUsuario}"/>
         <div>
             <label>Nombre:</label>
@@ -28,13 +28,24 @@
             <input type="number" th:field="*{edad}" required/>
         </div>
         <div>
-            <label>Sexo:</label>
-            <input type="text" th:field="*{sexo}" required/>
+            <label for="sexo">Sexo:</label>
+            <input type="radio" id="sexo_masculino" name="sexo" value="H" th:checked="${usuario.sexo == 'H'}" />
+            <label for="sexo_masculino">Hombre</label>
+            <input type="radio" id="sexo_femenino" name="sexo" value="M" th:checked="${usuario.sexo == 'M'}" />
+            <label for="sexo_femenino">Mujer</label>
         </div>
         <div>
-            <button type="submit">Guardar</button>
+        	<label for="tipoUsuario">Tipo de Consulta:</label>
+            <select id="tipoUsuario" th:field="*{tipoConsulta}">
+                <option value="Adelgazar" th:selected="${usuario.tipoConsulta == 'Adelgazar'}">Adelgazar</option>
+                <option value="Engordar" th:selected="${usuario.tipoConsulta == 'Engordar'}">Engordar</option>
+                <option value="Mantenerse" th:selected="${usuario.tipoConsulta == 'Mantenerse'}">Mantenerse</option>
+            </select>
         </div>
+	    <div>
+	        <button type="submit">Guardar</button>
+	    </div>
     </form>
-    <a th:href="@{/usuarios}">Volver al listado</a>
+    <a th:href="@{/}">Volver al listado</a>
 </body>
 </html>

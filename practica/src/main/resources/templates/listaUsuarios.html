@@ -5,10 +5,6 @@
 </head>
 <body>
     <h1>Listado de Usuarios</h1>
-    <form th:action="@{/usuarios}" method="get">
-        <input type="text" name="nombre" th:value="${nombre}" placeholder="Buscar por nombre"/>
-        <button type="submit">Buscar</button>
-    </form>
     <table>
         <thead>
             <tr>
@@ -29,18 +25,19 @@
                 <td th:text="${usuario.altura}"></td>
                 <td th:text="${usuario.edad}"></td>
                 <td th:text="${usuario.sexo}"></td>
+                <td th:text="${usuario.tipoConsulta}"></td>
                 <td>
-                    <a th:href="@{/usuarios/edit/{id}(id=${usuario.idUsuario})}">Editar</a>
-                    <a th:href="@{/usuarios/delete/{id}(id=${usuario.idUsuario})}">Eliminar</a>
+                    <a th:href="@{/editar/{id}(id=${usuario.idUsuario})}">Editar</a>
+                    <a th:href="@{/eliminar/{id}(id=${usuario.idUsuario})}">Eliminar</a>
                 </td>
             </tr>
         </tbody>
     </table>
     <div>
         <span th:text="'Página ' + ${currentPage + 1} + ' de ' + ${usuarioPage.totalPages}"></span>
-        <a th:if="${currentPage > 0}" th:href="@{/usuarios(page=${currentPage - 1}, size=${pageSize}, nombre=${nombre})}">Anterior</a>
-        <a th:if="${currentPage < usuarioPage.totalPages - 1}" th:href="@{/usuarios(page=${currentPage + 1}, size=${pageSize}, nombre=${nombre})}">Siguiente</a>
+        <a th:if="${currentPage > 0}" th:href="@{/(page=${currentPage - 1}, size=${pageSize}, nombre=${nombre})}">Anterior</a>
+        <a th:if="${currentPage < usuarioPage.totalPages - 1}" th:href="@{/(page=${currentPage + 1}, size=${pageSize}, nombre=${nombre})}">Siguiente</a>
     </div>
-    <a th:href="@{/usuarios/create}">Crear Nuevo Usuario</a>
+    <a th:href="@{/crear}">Crear Nuevo Usuario</a>
 </body>
 </html>
