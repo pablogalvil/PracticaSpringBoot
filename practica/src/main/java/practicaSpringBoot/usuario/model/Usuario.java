@@ -11,6 +11,8 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	// Especifico el nombre de la columna para evitar errores al involucrarse
+	// mayúsculas
 	@Column(name = "idusuario")
 	private long idUsuario;
 	private String nombre;
@@ -19,6 +21,8 @@ public class Usuario {
 	private int altura;
 	private int edad;
 	private char sexo;
+	// Especifico el nombre de la columna para evitar errores al involucrarse
+	// mayúsculas
 	@Column(name = "tipoconsulta")
 	private String tipoConsulta;
 

@@ -2,32 +2,34 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Formulario de Usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
     <h1>Formulario de Usuario</h1>
     <form th:action="@{/actualizar}" th:object="${usuario}" method="post">
         <input type="hidden" th:field="*{idUsuario}"/>
-        <div>
+        <div class="form-text">
             <label>Nombre:</label>
             <input type="text" th:field="*{nombre}" required/>
         </div>
-        <div>
+        <div class="form-text">
             <label>Contraseña:</label>
             <input type="password" th:field="*{contrasenia}" required/>
         </div>
-        <div>
+        <div class="form-text">
             <label>Peso:</label>
             <input type="number" th:field="*{peso}" required/>
         </div>
-        <div>
+        <div class="form-text">
             <label>Altura:</label>
             <input type="number" th:field="*{altura}" required/>
         </div>
-        <div>
+        <div class="form-text">
             <label>Edad:</label>
             <input type="number" th:field="*{edad}" required/>
         </div>
         <div>
+        	<!-- Radio para que elija entre hombre y mujer -->
             <label for="sexo">Sexo:</label>
             <input type="radio" id="sexo_masculino" name="sexo" value="H" th:checked="${usuario.sexo == 'H'}" />
             <label for="sexo_masculino">Hombre</label>
@@ -35,8 +37,9 @@
             <label for="sexo_femenino">Mujer</label>
         </div>
         <div>
+        	<!-- Select en el que doy a elegir entre el tipo de consulta que quiere, ya sea adelgazar, engordar o mantenerse -->
         	<label for="tipoUsuario">Tipo de Consulta:</label>
-            <select id="tipoUsuario" th:field="*{tipoConsulta}">
+            <select id="tipoUsuario" class="form-select" th:field="*{tipoConsulta}">
                 <option value="Adelgazar" th:selected="${usuario.tipoConsulta == 'Adelgazar'}">Adelgazar</option>
                 <option value="Engordar" th:selected="${usuario.tipoConsulta == 'Engordar'}">Engordar</option>
                 <option value="Mantenerse" th:selected="${usuario.tipoConsulta == 'Mantenerse'}">Mantenerse</option>
@@ -46,6 +49,8 @@
 	        <button type="submit">Guardar</button>
 	    </div>
     </form>
-    <a th:href="@{/}">Volver al listado</a>
+    <a th:href="@{/}">
+    	<button type="button" class="btn btn-secondary">Volver al listado</button>
+    </a>
 </body>
 </html>
